@@ -1,15 +1,15 @@
-import models.Product;
+import models.Persona;
 
 public class BusquedaBinaria {
 
-    public void sortByName(Product[] products) {
+    public void sortByAge(Persona[] products) {
         // Ordenar el arreglo de productos por nombre utilizando el método de burbuja
         for (int i = 0; i < products.length - 1; i++) {
             boolean swap = false;
             for (int j = 0; j < products.length - i - 1; j++) {
-                if (products[j].getName().compareTo(products[j + 1].getName()) > 0) {
+                if (products[j].getEdad() > products[j + 1].getEdad()) {
                     // Intercambiar productos[j] y productos[j + 1]
-                    Product temp = products[j];
+                    Persona temp = products[j];
                     products[j] = products[j + 1];
                     products[j + 1] = temp;
                     swap = true;
@@ -21,7 +21,7 @@ public class BusquedaBinaria {
         }
     }
 
-    public int findByName(Product [] products, String nombre) {
+    public int findByAge(Persona [] products, int edad) {
         //definamos el punto medio
         //comparemos con la clave
         //si es igual, retornamos el punto medio
@@ -33,11 +33,11 @@ public class BusquedaBinaria {
 
         while (bajo <= alto) {
             int central = (bajo + alto) / 2;
-            if (products[central].getName().equals(nombre)) {
+            if (products[central].getEdad() == edad) {
                 return central; // Encontrado
             } 
             //si voy a la derecha o izquierda
-            int comparacion = products[central].getName().compareTo(nombre);
+            int comparacion = products[central].getEdad() - edad;
             if (comparacion < 0) {
                 bajo = central + 1; // Buscar en la mitad superior
             } else {

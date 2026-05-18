@@ -1,22 +1,35 @@
-import models.Product;
+import java.util.Scanner;
+
+import models.Persona;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        Scanner teclado = new Scanner(System.in);
+        Persona[] personas = new Persona[9];
         
-        Product[] products = {
-            new Product("Laptop", 20),
-            new Product("Smartphone", 25),
-            new Product("Tablet", 10),
-            new Product("Monitor", 5),
-            new Product("Keyboard",15)
-        };
+        int cont = 0;
+
+        while (cont < 9) {
+            System.out.println("Ingrese el nombre -->");
+            String nombre = teclado.nextLine();
+            System.out.println("Ingrese la edad -->");
+            int edad = teclado.nextInt();
+            personas[cont] = new Persona(nombre, edad);
+            cont++;
+        }
+
         // Ordenar el arreglo de productos por nombre
         BusquedaBinaria bBinaria = new BusquedaBinaria();
-        bBinaria.sortByName(products);
-        for (Product product : products) {
-            System.out.println(product);
+        bBinaria.sortByAge(personas);
+        for (Persona persona : personas) {
+            System.out.println(persona);
         }
-        int res = bBinaria.findByName(products, "Laptop");
+
+
+        System.out.println("Ingrese la edad a buscar --> ");
+        int edadBuscar = teclado.nextInt();
+        int res = bBinaria.findByAge(personas, edadBuscar);
+
         if (res >= 0) {
             System.out.println("Entre en pos: " + res);
         } else {
